@@ -1,6 +1,4 @@
 (async () => {
-    const IS_WEBP_EXPORT_SUPPORTED =
-        document.createElement("canvas").toDataURL("image/webp").indexOf("data:image/webp") == 0;
     class DrawingTokenizer {
         static initialize() {
             (async () => {
@@ -161,9 +159,6 @@
                     game.i18n.localize("DRAWINGTOKENIZER.error.NoDrawingsSelected")
                 );
             const selectedDrawings = canvas.drawings._controlled;
-            const WebPText = IS_WEBP_EXPORT_SUPPORTED
-                ? "WebP"
-                : "WebP(Unsupported by your browser)";
             let form = `<form><div class="form-group-stacked">
 			<div class="form-group">
 				<label>Image filename</label>
@@ -172,8 +167,8 @@
 			<div class="form-group">
 				<label>Image type</label>
 				<select name="type">
-					<option value="image/png" selected="selected">Png</option>
-					<option value="image/webp">${WebPText}</option>
+					<option value="image/png" selected="selected">PNG</option>
+					<option value="image/webp">WebP</option>
 				</select>
 			</div>
 			<div class="form-group">
@@ -198,9 +193,6 @@
                     if (quality < 0) quality = 0;
                     if (quality > 1) quality = 1;
 
-                    if (!IS_WEBP_EXPORT_SUPPORTED) {
-                        type = "image/png";
-                    }
                     if (filename.trim().length == 0)
                         return ui.notifications.error(
                             game.i18n.localize("DRAWINGTOKENIZER.error.NoFilenameEntered")
