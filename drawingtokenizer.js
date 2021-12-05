@@ -141,7 +141,7 @@
                         name: "DTtoImage",
                         title: game.i18n.localize("DRAWINGTOKENIZER.ConvertToImage"),
                         icon: "fas fa-image",
-                        visible: game.user.isGM,
+                        visible: game.user.isTrusted,
                         onClick: () => DrawingTokenizer._convertDrawingDialog(),
                         button: true,
                     });
